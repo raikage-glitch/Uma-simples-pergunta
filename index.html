@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Pergunta Especial</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 80px;
+        background: #1e1e3f; /* Azul Drácula */
+        color: white; /* Letras brancas */
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .btn {
+        padding: 12px 28px;
+        font-size: 20px;
+        margin: 10px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    #sim {
+        background-color: #4caf50;
+        color: white;
+    }
+
+    #nao {
+        background-color: #e53935;
+        color: white;
+        position: absolute;
+    }
+</style>
+</head>
+<body>
+
+<h1>O ônibus de Rai vai quebrar?</h1>
+
+<button id="sim" class="btn">Sim</button>
+<button id="nao" class="btn">Não</button>
+
+<script>
+    const nao = document.getElementById("nao");
+    const sim = document.getElementById("sim");
+
+    // Quando APERTAR no NÃO → muda de lugar
+    nao.addEventListener("click", () => {
+        const x = Math.random() * (window.innerWidth - 150);
+        const y = Math.random() * (window.innerHeight - 150);
+
+        nao.style.left = x + "px";
+        nao.style.top = y + "px";
+    });
+
+    // Botão SIM → mostra mensagem
+    sim.addEventListener("click", () => {
+        document.body.innerHTML = "<h1>muito bem. valeu</h1>";
+    });
+</script>
+
+</body>
+</html>
