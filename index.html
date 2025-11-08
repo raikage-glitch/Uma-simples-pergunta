@@ -16,6 +16,12 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        overflow: hidden;
+    }
+
+    h1 {
+        font-size: 26px;
+        margin-bottom: 40px;
     }
 
     button {
@@ -30,16 +36,18 @@
     #sim {
         background-color: #4caf50; /* Verde */
         color: white;
-        position: absolute;
+        position: absolute; /* Necessário para mover */
     }
 
     #nao {
         background-color: #e53935; /* Vermelho */
         color: white;
+        position: relative;
+        z-index: 10;
     }
 
     #mensagem {
-        margin-top: 20px;
+        margin-top: 30px;
         font-size: 22px;
         display: none;
     }
@@ -47,7 +55,7 @@
 </head>
 <body>
 
-<h1>Você pode me beijar?</h1>
+<h1>O ônibus de Rai vai quebrar?</h1>
 
 <button id="sim">Sim</button>
 <button id="nao">Não</button>
@@ -59,13 +67,10 @@
     const btnNao = document.getElementById("nao");
     const msg = document.getElementById("mensagem");
 
-    // Quando toca no SIM → ele muda de lugar
-    btnSim.addEventListener("touchstart", moverBotao);
-    btnSim.addEventListener("mouseover", moverBotao); // caso alguém use mouse
-
+    // Função que faz o botão SIM fugir
     function moverBotao() {
-        const largura = window.innerWidth - 120;
-        const altura = window.innerHeight - 120;
+        const largura = window.innerWidth - 120; 
+        const altura = window.innerHeight - 120; 
 
         const novaX = Math.random() * largura;
         const novaY = Math.random() * altura;
@@ -74,12 +79,16 @@
         btnSim.style.top = novaY + "px";
     }
 
-    // Quando aperta o botão NÃO
+    // SIM foge quando tenta tocar ou passar o dedo
+    btnSim.addEventListener("touchstart", moverBotao);
+    btnSim.addEventListener("mouseover", moverBotao);
+
+    // Quando aperta NÃO → aparece mensagem zoando
     btnNao.addEventListener("click", () => {
-        msg.innerText = "Pensei que ia dizer sim...";
+        msg.innerText = "Ah tá bom... acharam que iam se dar bem né? 😂";
         msg.style.display = "block";
     });
 </script>
 
 </body>
-</html>
+</html>        
